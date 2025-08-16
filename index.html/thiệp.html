@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thiệp cưới Minh & Lan</title>
+  <meta name="description" content="Thiệp cưới online tông đỏ – tối giản, sang trọng, hiệu ứng mượt mà." />
+
+  <!-- Google Fonts: tiêu đề & nội dung -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon (có thể thay) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
+
+  <style>
+    :root{
+      /* MÀU CHỦ ĐẠO: ĐỎ */
+      --red-50:#fff1f2; --red-100:#ffe4e6; --red-200:#fecdd3; --red-300:#fda4af;
+      --red-400:#fb7185; --red-500:#f43f5e; --red-600:#e11d48; --red-700:#be123c;
+      --red-800:#9f1239; --red-900:#881337; --stone:#222; --muted:#6b7280;
+      --radius: 20px; --shadow: 0 8px 30px rgba(0,0,0,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--red-50),#fff);color:#111;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+
+    /* --- HERO --- */
+    .hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(60% 60% at 50% 30%, var(--red-200), transparent 60%),
+                                            radial-gradient(50% 50% at 20% 80%, var(--red-100), transparent 60%),
+                                            radial-gradient(40% 40% at 80% 80%, var(--red-300), transparent 60%);
+      filter:blur(30px);z-index:0}
+    .hero-inner{position:relative;z-index:1;text-align:center;padding:40px 20px; margin-top:20px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter: blur(8px);border:1px solid var(--red-200);box-shadow:var(--shadow);font-weight:600;color:var(--red-700)}
+    .names{font-family:'Playfair Display',serif;font-size: clamp(36px, 6vw, 84px);line-height:1.05;margin:20px 0;color:var(--red-800);letter-spacing:.5px}
+    .and{display:inline-block;transform: translateY(-.08em);font-weight:700;color:var(--red-500)}
+    .date{font-weight:600;color:var(--red-700);font-size:clamp(16px,2.2vw,20px);letter-spacing:2px;text-transform:uppercase}
+
+    .cta-wrap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+    .btn{border:none;cursor:pointer;padding:14px 20px;border-radius:12px;font-weight:700;letter-spacing:.4px}
+    .btn.primary{background:linear-gradient(180deg,var(--red-600),var(--red-700));color:#fff;box-shadow:var(--shadow)}
+    .btn.ghost{background:#fff;border:1px solid var(--red-200);color:var(--red-700)}
+    .btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 4px 16px rgba(244,63,94,0.10);
+    }
+
+    /* --- COUNTDOWN --- */
+    .countdown{display:flex;justify-content:center;gap:14px;margin-top:28px}
+    .timebox{min-width:80px;background:#fff;border:1px solid var(--red-100);border-radius:14px;box-shadow:var(--shadow);padding:12px}
+    .timebox .num{font-weight:800;font-size:32px;color:var(--red-700)}
+    .timebox .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+    /* --- BLOCKS --- */
+    .section{padding:80px 20px}
+    .container{max-width:1100px;margin-inline:auto}
+    .title{font-family:'Playfair Display',serif;font-size: clamp(28px,4vw,42px);margin:0 0 16px;color:var(--red-800);text-align:center}
+    .subtitle{margin:0 auto 28px;max-width:720px;text-align:center;color:#444}
+
+    /* Couple */
+    .couple{display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:#fff;border:1px solid var(--red-100);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .card .row{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center}
+    .avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--red-300)}
+    .name{font-weight:800;color:var(--red-800);font-size:20px}
+    .muted{color:var(--muted)}
+
+    @media (min-width:900px){
+      .couple{grid-template-columns:1fr 1fr}
+    }
+
+    /* Timeline */
+    .timeline{display:grid;grid-template-columns:1fr;gap:14px}
+    .tile{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center;background:#fff;border:1px solid var(--red-100);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+    .icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--red-100);color:var(--red-700);font-weight:800}
+    .tile h4{margin:0;color:#222}
+    .tile p{margin:4px 0 0;color:#555}
+
+    /* Gallery */
+    .gallery{columns: 1; column-gap: 14px}
+    .gallery img{width:100%;border-radius:16px;margin:0 0 14px;border:1px solid var(--red-100);box-shadow:var(--shadow)}
+    @media (min-width:700px){.gallery{columns: 2}}
+    @media (min-width:1000px){.gallery{columns: 3}}
+
+    /* RSVP */
+    form{display:grid;gap:12px}
+    input,textarea,select{width:100%;border:1px solid var(--red-200);border-radius:12px;padding:12px 14px;font:inherit}
+    label{font-size:14px;font-weight:600;color:#333}
+
+    /* Gift */
+    .gift{display:grid;grid-template-columns:1fr;gap:16px}
+    .gift .bank{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--red-100);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+    .copy{padding:10px 12px;border-radius:10px;border:1px solid var(--red-200);background:var(--red-50);cursor:pointer;font-weight:700;color:var(--red-700)}
+
+    /* Footer */
+    footer{padding:40px 20px;text-align:center;color:#555}
+
+    /* Floating music button (tuỳ chọn) */
+    .music{position:fixed;right:16px;bottom:16px;z-index:50}
+    .music button{width:52px;height:52px;border-radius:999px;border:none;background:linear-gradient(180deg,var(--red-600),var(--red-700));color:#fff;box-shadow:var(--shadow);cursor:pointer;font-size:18px}
+
+    /* Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .fade-in-text {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+      will-change: opacity, transform;
+    }
+    .fade-in-text.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Hiệu ứng trái tim rơi */
+    .heart-fall {
+      position: fixed;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 28px;
+      animation: heart-fall 2.8s linear forwards;
+    }
+    @keyframes heart-fall {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(1) rotate(-20deg);
+      }
+      10% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1.2) rotate(20deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0.8) rotate(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <span class="badge">Thiệp cưới · Tông đỏ sang trọng</span>
+      <h1 class="names">Minh <span class="and">&</span> Lan</h1>
+      <p class="date">Chủ nhật, 14 Tháng 12, 2025 · 10:00</p>
+
+      <!-- ĐẾM NGƯỢC: đổi ngày ở data-date -->
+      <div class="countdown" id="countdown" data-date="2025-12-14T10:00:00+07:00">
+        <div class="timebox"><div class="num" id="d">00</div><div class="lbl">ngày</div></div>
+        <div class="timebox"><div class="num" id="h">00</div><div class="lbl">giờ</div></div>
+        <div class="timebox"><div class="num" id="m">00</div><div class="lbl">phút</div></div>
+        <div class="timebox"><div class="num" id="s">00</div><div class="lbl">giây</div></div>
+      </div>
+
+      <div class="cta-wrap">
+        <a class="btn primary" href="#rsvp">Xác nhận tham dự</a>
+        <a class="btn ghost" href="#details">Xem thông tin</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CẶP ĐÔI -->
+  <section class="section" id="couple">
+    <div class="container">
+      <h2 class="title">Cô dâu & Chú rể</h2>
+      <p class="subtitle">Chúng mình rất hạnh phúc khi được chia sẻ khoảnh khắc ý nghĩa này cùng gia đình và bạn bè thân thiết.</p>
+      <div class="couple">
+        <div class="card">
+          <div class="row">
+            <img class="avatar" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=400&auto=format&fit=crop" alt="Cô dâu"/>
+            <div>
+              <div class="name">Lan Nguyễn</div>
+              <div class="muted">Con ông A · bà B</div>
+              <p class="muted">Hiện công tác tại Hà Nội. Yêu hoa hồng, cà phê sữa và những chuyến đi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <img class="avatar" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=400&auto=format&fit=crop" alt="Chú rể"/>
+            <div>
+              <div class="name">Minh Trần</div>
+              <div class="muted">Con ông C · bà D</div>
+              <p class="muted">Sống và làm việc tại Hà Nội. Thích chạy bộ, nấu ăn và nghe nhạc acoustic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI TIẾT LỄ CƯỚI (bỏ phần "Chuyện chúng mình" theo yêu cầu) -->
+  <section class="section" id="details">
+    <div class="container">
+      <h2 class="title">Lịch trình & Địa điểm</h2>
+      <p class="subtitle">Rất mong sự hiện diện của bạn trong ngày vui của chúng mình.</p>
+      <div class="timeline">
+        <div class="tile">
+          <div class="icon">⏰</div>
+          <div>
+            <h4>Đón khách · 09:30</h4>
+            <p>Vui lòng đến sớm vài phút để check-in & chụp ảnh kỷ niệm.</p>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="icon">💒</div>
+          <div>
+            <h4>Hôn lễ · 10:00</h4>
+            <p>Nghi thức diễn ra trang trọng tại sảnh Venus, KS Grand Rose.</p>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="icon">🍽️</div>
+          <div>
+            <h4>Tiệc cưới · 11:00</h4>
+            <p>Thưởng thức thực đơn đặc biệt, âm nhạc acoustic ấm áp.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bản đồ Google: thay địa chỉ/iframe nếu cần -->
+      <div class="card" style="margin-top:18px">
+        <h3 style="margin:0 0 10px;color:var(--red-800)">Địa chỉ</h3>
+        <p class="muted" style="margin:0 0 12px">Khách sạn Grand Rose – 123 Phố Hoa Hồng, Quận Đống Đa, Hà Nội</p>
+        <div style="position:relative;padding-top:56.25%">
+          <iframe title="Bản đồ" src="https://www.google.com/maps?q=Hanoi%20Opera%20House&output=embed" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THƯ VIỆN ẢNH -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2 class="title">Khoảnh khắc</h2>
+      <p class="subtitle">Một vài hình ảnh pre-wedding. (Có thể thay ảnh tuỳ thích)</p>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1484591974057-265bb767ef71?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1504123010103-b1f3fe484a32?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="section" id="rsvp">
+    <div class="container">
+      <h2 class="title">Xác nhận tham dự</h2>
+      <p class="subtitle">Bạn vui lòng điền thông tin để chúng mình chuẩn bị đón tiếp chu đáo nhé.</p>
+      <div class="card">
+        <!-- Gợi ý: có thể thay action bằng Formspree/Google Forms -->
+        <form action="#" onsubmit="event.preventDefault(); alert('Đã ghi nhận! Hẹn gặp bạn trong ngày vui ❤️'); this.reset();">
+          <div>
+            <label for="name">Họ và tên</label>
+            <input id="name" required placeholder="Nguyễn Văn A" />
+          </div>
+          <div>
+            <label for="phone">Số điện thoại</label>
+            <input id="phone" type="tel" required placeholder="09xx xxx xxx" />
+          </div>
+          <div>
+            <label for="attend">Số người tham dự</label>
+            <select id="attend">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div>
+            <label for="note">Lời nhắn</label>
+            <textarea id="note" rows="3" placeholder="Bạn muốn sắp xếp chỗ ngồi/ăn chay/khác..."></textarea>
+          </div>
+          <button class="btn primary" type="submit">Gửi RSVP</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MỪNG CƯỚI (GIFT) -->
+  <section class="section" id="gift">
+    <div class="container">
+      <h2 class="title">Mừng cưới</h2>
+      <p class="subtitle">Tình cảm của bạn là món quà quý giá nhất. Nếu muốn gửi mừng từ xa, thông tin tài khoản bên dưới:</p>
+      <div class="gift">
+        <div class="bank">
+          <div>
+            <div style="font-weight:800;color:#222">MB Bank · Trần Văn Minh</div>
+            <div class="muted">Số TK: <strong id="acct">0123456789</strong> · Chi nhánh Hà Nội</div>
+          </div>
+          <button class="copy" data-copy="#acct">Sao chép</button>
+        </div>
+        <div class="bank">
+          <div>
+            <div style="font-weight:800;color:#222">Vietcombank · Nguyễn Thị Lan</div>
+            <div class="muted">Số TK: <strong id="acct2">9876543210</strong> · CN Thăng Long</div>
+          </div>
+          <button class="copy" data-copy="#acct2">Sao chép</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Minh & Lan · Hẹn gặp bạn trong ngày vui! 💖</p>
+    <p><a href="#home">↑ Lên đầu trang</a></p>
+  </footer>
+
+  <!-- Nút nhạc (tuỳ chọn). Thêm file /music.mp3 nếu muốn. -->
+  <div class="music" hidden>
+    <audio id="bgm" src="/music.mp3" loop></audio>
+    <button id="musicBtn" aria-label="Phát/Tạm dừng nhạc">♪</button>
+  </div>
+
+  <script>
+    // Đếm ngược
+    (function(){
+      const root = document.getElementById('countdown');
+      if(!root) return;
+      const target = new Date(root.dataset.date).getTime();
+      const d = document.getElementById('d');
+      const h = document.getElementById('h');
+      const m = document.getElementById('m');
+      const s = document.getElementById('s');
+
+      function tick(){
+        const now = Date.now();
+        let diff = Math.max(0, target - now);
+        const dd = Math.floor(diff / (1000*60*60*24)); diff -= dd*(1000*60*60*24);
+        const hh = Math.floor(diff / (1000*60*60)); diff -= hh*(1000*60*60);
+        const mm = Math.floor(diff / (1000*60)); diff -= mm*(1000*60);
+        const ss = Math.floor(diff / 1000);
+        d.textContent = String(dd).padStart(2,'0');
+        h.textContent = String(hh).padStart(2,'0');
+        m.textContent = String(mm).padStart(2,'0');
+        s.textContent = String(ss).padStart(2,'0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // Copy số tài khoản
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sel = btn.getAttribute('data-copy');
+        const el = document.querySelector(sel);
+        if(!el) return;
+        const text = el.textContent.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          const old = btn.textContent;
+          btn.textContent = 'Đã sao chép';
+          setTimeout(()=> btn.textContent = old, 1200);
+        });
+      });
+    });
+
+    // Nhạc nền (ẩn mặc định – bỏ hidden ở .music để bật)
+    (function(){
+      const wrap = document.querySelector('.music');
+      if(!wrap) return;
+      const audio = document.getElementById('bgm');
+      const btn = document.getElementById('musicBtn');
+      if(!audio || !btn) return;
+      btn.addEventListener('click', ()=>{
+        if(audio.paused){ audio.play(); } else { audio.pause(); }
+      });
+    })();
+
+    // Hiệu ứng xuất hiện khi cuộn
+    document.querySelectorAll('.fade-in').forEach(sec => {
+      function onScroll() {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          sec.classList.add('visible');
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    });
+    document.querySelectorAll('.fade-in-text').forEach(sec => {
+      function onScroll() {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          sec.classList.add('visible');
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    });
+
+    // Hiệu ứng trái tim rơi
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-fall';
+      heart.style.left = Math.random() * 96 + 'vw';
+      heart.style.fontSize = (24 + Math.random()*16) + 'px';
+      heart.style.color = ['#f43f5e','#fb7185','#e11d48','#be123c','#9f1239'][Math.floor(Math.random()*5)];
+      heart.textContent = '❤';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2800);
+    }
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
